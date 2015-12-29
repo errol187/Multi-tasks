@@ -1,0 +1,358 @@
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/********************************
+/    Layout Styling
+********************************/
+
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -40px;
+}
+#push,
+#footer-wrapper {
+  /*height: 40px;*/
+}
+
+#footer-wrapper {
+
+}
+
+.footer-main {
+  background-color: #f2f2f2;
+  padding:30px 0px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight:bold;
+}
+
+footer p {
+  margin-bottom: 0;
+  color: #777;
+}
+
+.footer-links li {
+  list-style-type: none;
+  margin-bottom:5px;
+  color:#2b78bd;
+}
+
+footer a {
+  color:#2b78bd;
+}
+
+footer a:hover {
+  text-decoration: none;
+  color:#2b78bd;
+}
+
+#abta-logo {
+  vertical-align: middle;
+  float:right;
+}
+
+.copyright-section{
+  padding:15px 0px;
+  background-color:white;
+}
+
+#copyright-text {
+  font-size:0.7em; 
+  text-align:left;
+  margin-top:15px;
+}
+
+.navbar-default {
+  border-radius:0px;
+  background-color:#2b78bd;
+  border:none;
+  color:white;
+  -webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.75);
+}
+
+.nav-link {
+  text-decoration:none;
+  font-size:0.9em;
+}
+
+.nav-icons img{
+  width:28px;
+  margin-top:10px;
+  vertical-align: middle;
+  margin-left:10px;
+  cursor: pointer;
+}
+
+.navbar-default .navbar-nav>li>a {
+  text-decoration:none;
+  font-size:0.9em;
+  color:white;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight:600;
+}
+
+.navbar-brand {
+  padding:7px 15px;
+}
+
+.navbar-default .navbar-toggle {
+  border:none;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color :white;
+  border:none;
+}
+
+
+.navbar-default .navbar-toggle:focus {
+    background-color: transparent;
+}
+
+.navbar-default .navbar-toggle:hover {
+    background-color: transparent;
+}
+
+.newsletter-container {
+  margin:10px 0px 25px 0px; 
+}
+
+#newsletter-box {
+  background-color:white;
+  border:1px solid #dfdfdf;
+  padding:20px 30px ;
+}
+
+.title {
+  margin-top:0px;
+}
+
+.htx-info {
+  margin-bottom:20px;
+  font-weight:normal;
+}
+
+.htx-info img {
+  height:50px;
+  margin-left:10px;
+}
+
+.htx-info strong {
+  color:black;
+}
+
+
+.accred-logos {
+  float:right;
+}
+
+#signup {
+  margin-top:10px;
+  margin-bottom:10px;
+  margin:0 auto;
+}
+
+#newsletter-input {
+  margin-top:10px;
+  width:65%;
+  height:35px;
+  background-color:red;
+  display: inline-block;
+  background-color:#f2f2f2;
+  border:1px solid #dfdfdf;
+  overflow: hidden;
+}
+
+#newsletter-input input{
+  padding:7px;
+  border:none;
+  background-color:#f2f2f2;
+  width:100%;
+  font-size:0.9em;
+}
+
+#newsletter-input input:focus{
+  outline:none;
+}
+
+#newsletter-submit {
+  margin-top:10px;
+  width:28%;
+  margin-left:20px;
+  height:35px;
+  text-align:center;
+  padding:5px;
+  background-color:blue;
+  display: inline-block;
+  color: white;
+  background-color:#56af5b;
+  font-size: 1.2em;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.social-banner {
+  background-color: #5593ca;
+  padding-top:15px;
+  padding-bottom:15px;
+}
+
+.social-banner img {
+  display: inline-block;
+}
+
+#social-banner-logo {
+  width:130px;
+}
+
+.social-links {
+  width:40px;
+}
+
+#social-links-facebook {
+  margin-left:25px;
+}
+
+@media (max-width: 767px) {
+  #push,
+  #footer-wrapper {
+    /*height: 40px;*/
+  }
+  #wrap {
+    /*margin: 0 auto -40px;*/
+  }
+
+  .footer-links {
+    display: none;
+  }
+
+  #copyright-text {
+    text-align:center;
+  }
+
+  #abta-logo {
+    float:none;
+    text-align:center;
+    margin-top:15px;
+  }
+
+  #newsletter-input {
+    width:100%;
+    display: block;
+  }
+
+  #newsletter-submit {
+    width:100%;
+    display: inline-block;
+    margin-top:10px;
+    margin-left:0px;
+  }
+
+}
+
+@media (max-width: 992px) {
+
+  .logo-container {
+    display: none;
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .navbar-collapse.collapse {
+        display: none !important;
+    }
+    .navbar-collapse.collapse.in {
+        display: block !important;
+    }
+    .navbar-header .collapse, .navbar-toggle {
+        display:block !important;
+    }
+    .navbar-header {
+        float:none;
+    }
+}
+
+
+
+/********************************
+/    Landing Page Styling
+********************************/
+
+.top-container {
+  height:400px;
+  background-color: #FFFFFF;
+  background-image: url('/images/htx/img/homeBGBeach.jpg');
+  background-position: center 40%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.navbar-default {
+  margin-bottom:0px;
+}
+
+#landing-strapline {
+  text-align: center;
+  color:white;
+  margin-top:30px;
+  margin-bottom:20px;
+  padding:5px 80px;
+}
+
+#landing-strapline h2 {
+  font-size:2.1em;
+  font-weight:bold;
+}
+
+@media (max-width: 767px) {
+
+  #landing-strapline h2 {
+    font-size: 1.6em;
+  }
+
+  #landing-strapline { 
+    padding:5px 20px;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  #landing-strapline h2 {
+    font-size: 1.3em;
+  }
+
+  #landing-strapline { 
+    padding:5px 0px;
+  }
+
+}
+
+.feefo-banner {
+  margin:0 auto;
+  text-align:center;
+}
+
+.usp-banner {
+  background-color: #f2f2f2;
+  padding:40px; 
+  font-family: 'Source Sans Pro', sans-serif;
+  color:#777;
+  text-align:center;
+}
+
+.usp-icon {
+  display: inline-block;
+}
+
+.usp-text {
+  display: inline-block;
+}

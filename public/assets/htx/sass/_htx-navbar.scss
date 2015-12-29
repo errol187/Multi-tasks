@@ -1,0 +1,64 @@
+// @import 'public/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_mixins';
+
+//
+// Navbars
+// --------------------------------------------------
+
+
+.navbar-brand {
+  padding: $navbar-padding-vertical $navbar-padding-horizontal;
+  font-size: $font-size-large;
+  line-height: $line-height-computed;
+  height: $navbar-height;
+
+  @include make-xs-column(9);
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+
+  > img {
+    display: block;
+    max-width: 50%;
+  }
+}
+
+
+// Alternate navbars
+// --------------------------------------------------
+
+// Default navbar
+.navbar-default,
+.navbar-collapse,
+.navbar-form,
+.navbar-toggle {
+	border: none;
+
+	.navbar-toggle {
+
+    // Icons
+    .icon-HT_close:before{
+      color: #ffffff;
+      font-weight: bold;
+    }
+    	
+    &:hover,
+    &:focus {
+    	background-color: $navbar-default-toggle-hover-bg;
+    }
+    .icon-bar {
+    	background-color: $navbar-default-toggle-icon-bar-bg;
+    }
+  }
+
+}
+
+.navbar-collapse {
+        
+    &.in {
+        padding-bottom: 15px;
+        border: none;
+    }
+}
+

@@ -1,0 +1,27 @@
+.bold-font-size-small,
+.bold-font-size-medium, 
+.bold-font-size-large,
+.bold-font-size-x-large {
+	font-weight: 800;
+
+}
+
+.bold-font-size-small{
+	font-size: $font-size-small;
+}
+
+.bold-font-size-medium {
+	font-size: $font-size-medium;
+}
+
+.bold-font-size-large {
+	font-size:  $font-size-large;
+}
+
+.bold-font-size-x-large {
+	
+	font-size: $font-size-x-large;
+}
+
+
+

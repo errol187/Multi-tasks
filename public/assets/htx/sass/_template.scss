@@ -1,0 +1,122 @@
+header {
+
+
+}
+
+main {
+
+	margin-top: 28px;
+
+	.mod__{
+
+		&booking-type{
+
+			@include make-xs-column(12);	
+
+		}
+	}
+
+}
+
+footer {
+
+
+
+}
+
+
+// Components (semantic rendering)
+// Utilise bootstrap mixins to layout sections of page
+section[class^="comp__search"] {
+
+	h1 {
+		font-size: $font-size-base;
+	}
+
+	.peoples .form-group {
+		@include make-xs-column(4);			
+	}
+}	
+
+.comp__search {
+
+	fieldset {
+
+		@include make-row();
+
+		.form-group,
+		.collections,
+		footer {
+			@include make-xs-column(12);		
+		}
+
+		.icon-HT_reverse:after { // TODO: request switch icon from design
+			content:url('/images/reverse.png');
+			position: relative;
+		    top: 5px;
+		    background-color: red;
+		    padding: .5em 0 0em .3em;
+		}
+			
+	}
+
+} // Search
+
+.comp__search-fallback {
+	
+	fieldset {
+
+		@include make-row();
+
+		legend {
+
+			@include make-xs-column(12);
+			margin-left: 15px;
+			margin-right: 15px;
+			padding-left:0;
+			padding-right:0;
+			width: 90%;
+
+		}
+
+		.form-group,
+		.collections{
+			@include make-xs-column(12);		
+		}
+
+		.arrivaldatetime,
+		.departuredatetime {
+
+			.form-group{
+
+				&:nth-child(1) {
+					@include make-xs-column(6);		
+				}
+
+				&:nth-child(2) {
+					@include make-xs-column(3);		
+				}
+
+				&:nth-child(3){
+					@include make-xs-column(3);		
+				}
+	
+			}
+			
+		}
+
+	}
+
+	footer {
+		@include make-row();
+		@include center-block();
+		
+		.btn {
+
+			
+			@include make-xs-column(12);
+		}
+	}
+
+
+}// Search - fallback

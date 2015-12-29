@@ -1,0 +1,288 @@
+
+
+
+
+
+div.top_header span.navimg
+{
+	display: block;
+	width: 100%;
+	color: #0061AB;
+	font-weight: bold;
+	line-height: 40px;
+	font-size: 13px;
+	padding-left: 40px;
+	background: none;
+}
+
+.logo {
+    text-align: auto;
+}
+.logo.fixspan_6
+{
+	margin-top: 0px;
+}
+
+.logo.fixspan_6 a
+{
+	width: 90%;
+}
+
+
+.fullcontainer {
+	padding: 1.2em;
+}
+
+.top_header
+{
+	padding: 0.3em 1.1em 0.5em 1.1em;
+	margin: 0;
+}
+
+.topbar_logo {
+	width:1%;
+}
+
+.spacer {
+	height:20px;
+}
+
+
+/********************************************
+	New styling for landing page
+********************************************/
+
+div.top_header span.navimg
+{
+	display: block;
+	width: 25%;
+	color: #0061AB;
+	font-weight: bold;
+	line-height: 40px;
+	font-size: 13px;
+	padding-right:20px;
+	padding-top:5%;
+	padding-bottom:5%;
+	float:right;
+	display:inline-block;
+	background-image: url('/images/mobile/img/menu_icon.png'); 
+	background-size:50%;
+	background-repeat:no-repeat;
+	background-position: center right;
+}
+
+.top_header_htx {
+	background-color:#0060AC;
+}
+
+.top_header_cxe {
+	background-color:#ebf0f5;
+}
+
+.menu-icon {
+	float:right;
+}
+
+.logo {
+	text-align: center;
+	padding-top:5px;
+}
+
+.mobile_logo {
+	width: 60%;
+	float: left;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	display: inline-block;
+}
+
+.firstlogo {
+	margin-top:5px;
+}
+
+.landing_container {
+	background-image: url('/images/mobile/img/landing_page_bg.jpg');
+	background-size:cover;
+	background-repeat: no-repeat;
+	background-position: left 13% bottom 10%;
+	padding: 1.2em;
+	font-family: Verdana,Arial,sans-serif;
+}
+
+#strapline_container {
+	/*background-color:rgba(255,255,255,0.5);*/
+	padding:25px 20px 10px 20px;
+	width:100%;
+	margin:0px;
+	margin-top:40px;
+	font-size:1em;
+	/*color:#414141;*/
+	font-weight:400;
+	text-shadow: 2px 2px #333;
+}
+
+.landing_strapline {
+	text-align:center;
+	font-size:1em;
+	/*color:#414141;*/
+	color:white;
+	font-weight:400;
+	padding-bottom: 1em;
+}
+
+.getquote_container {
+	background-color:rgba(0,97,171,0.5);
+	padding:15px 20px 0px 20px;
+	width:100%;
+	margin:0px;
+	margin-bottom:40px;
+}
+
+.getquote_container p:first-child {
+	text-align:center;
+}
+
+
+.destination_title {
+	font-weight: bold;
+}
+
+.form_type {
+	width: 100%;
+	display:inline;
+	padding:5px 5px;
+	margin-top:15px;
+	margin-bottom:10px;
+	color: #FFF;
+	font-size: 1em;
+	font-weight:bold;
+	background: #9DCE2C url("/images/htx/img/smallButtArrowDown.png") center right 10% no-repeat;
+	background-color: #9DCE2C;
+	border: 0px;
+	border-radius: 3px;
+	font-family: Verdana,Arial,sans-serif;
+	cursor: pointer;
+}
+
+#type_selector {
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+.usp {
+	font-size:0.7em;
+	font-weight:bold;
+	color:white;
+	padding: 0px 0px;
+	text-align:center;
+	display:inline-block; 
+	width:48%;
+	margin-bottom:5px;
+}
+
+.usp-icon {
+	color:#9DCE2C;
+	text-align:center;
+	margin-bottom:10px;
+	font-size:1.4em;
+	margin:0 auto;
+}
+
+
+
+#lock-icon {
+	width:15%;
+}
+
+#wallet-icon {
+	width:35%;
+}
+
+.feefo_bar {
+	background-color:white; 
+
+	height:40px;
+	margin-bottom:10px; 
+	padding: 0 1.2em;
+	background-color: white;
+/*	background-image: url('/images/mobile/img/feefo_banner.png');
+	background-size: 97%;
+	background-repeat: no-repeat;
+	background-position: center center;*/
+}
+
+.feefo_bar div.banner {
+	height: 100%;
+	max-width: 540px;
+	margin: 0 auto;
+	width: 100%;
+	background-image: url('/images/mobile/img/feefo_banner.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+#book-in-minutes {
+	color:white; 
+	font-size:1em; 
+	font-weight:bold; 
+	text-align:center; 
+	margin-top:-10px; 
+	padding-bottom:5px; 
+	margin-bottom:10px;"
+}
+
+.voucher-promo-mayday15-mobile {
+	width: 80%;
+	position: absolute;
+	/* float: right; */
+	right: -150px;
+	top:0;
+}
+
+#promo_banner {
+	display: inline-block;
+	position: relative;
+	float:right;
+	/* right: -150px; */
+	width: 100px;
+	margin-top: -60px;
+	margin-right:-19px;
+	height: 103px;
+	overflow: hidden;
+}
+
+.menubar ul li {
+	
+}
+
+.summary .notebox {
+	background:transparent;
+}
+
+#please_note_dialogue {
+	display:none;
+}
+
+.ui-state-default .ui-icon {
+    background-image: url(/images/mobile/jqueryui/ui-icons_888888_256x240.png) center left no-repeat;
+}
+
+.ui-widget-header .ui-icon {
+    background-image: url(/images/mobile/jqueryui/ui-icons_888888_256x240.png) center left no-repeat;
+}
+
+.ui-icon, .ui-widget-content .ui-icon {
+    background-image: url(/images/mobile/jqueryui/ui-icons_888888_256x240.png);
+}
+
+.ui-icon, .ui-widget-content .ui-icon {
+	background-image: url(/images/mobile/jqueryui/ui-icons_888888_256x240.png);
+}
+
+.ui-button-icon-only .ui-icon {
+}
+
+#dialogBox {
+	display:none;
+}

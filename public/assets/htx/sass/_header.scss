@@ -1,0 +1,30 @@
+.header {
+
+	@include clearfix;
+
+	background: $blue-darker;
+
+
+	&__topLogo{
+
+		//@extend .col-xs-10;
+
+	}
+
+	&__topLogo--first{
+
+		
+	}
+
+	&__topLogo--second{
+
+		
+	}
+
+	&__topNavigation{
+
+		// @extend .col-xs-2;
+		
+	}
+
+}

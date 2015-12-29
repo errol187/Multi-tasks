@@ -1,0 +1,219 @@
+nav {
+
+	background-color: $blue-darker;
+	width: 100%;
+	
+		// Push menu
+	.navbar-push {
+	    padding-right: 15px;
+	    padding-left: 15px;
+	    margin-left: 0;
+	    margin-right: 0;
+	}
+	
+	.nav {
+
+		>li {
+			&,
+			&.active
+
+			>a {
+
+				background-color: transparent;
+				color: #ffffff;
+			}
+		}
+		> li  + li.nav--grouped-links>ul>li {
+			>a {
+				position: relative;
+				display: block;
+				padding: 10px 15px;
+				@media (min-width: $screen-md-min) {
+				    height: 50px;
+    				vertical-align: middle;
+    				display: table-cell;
+    				text-transform: uppercase;
+    			}
+			}
+		}	
+	}
+
+	// Stacked pills
+	.nav-stacked {
+		
+		> li  + li,
+		> li  + li.nav--grouped-links>ul>li {
+			margin-top: 15px;
+			@media (min-width: $screen-sm-min) { // Inline  menu
+				margin-top: 0;
+				float: left;
+			}
+
+			li a {
+				color: white;
+				&:hover,
+				&:active,
+				&:focus {
+					// color: white;
+				}
+			}
+		}
+
+		> li  + li.nav--grouped-links {
+			background: transparent;
+			@media (min-width: $screen-sm-min) { 
+			    float: right;
+    			margin-right: 18%;
+    		}
+		}
+
+		.navbar-collapse,
+		.navbar-push,
+		.btn-static-state,
+		> li,
+		> li.nav--grouped-links>ul>li {
+		
+			background: $blue-light;
+			@media (min-width: $screen-sm-min) {
+				background: transparent;
+			}
+
+			.list-group {
+				a {
+					color: #444444;
+					@media (min-width: $screen-sm-min) {
+						// color: $blue-dark;
+					}
+				}
+					
+			}
+
+			a {
+				color: #ffffff;	
+				@media (min-width: $screen-md-min) {
+					color: $blue-dark;
+				}		
+				&:hover,
+				&:active,
+				&:focus {
+					background: transparent!important;
+					text-decoration: none;
+				}
+			}
+
+			&.active {
+				@media (min-width: $screen-sm-min) {
+					background: $navbar-default-link-active-bg;
+				}
+			}
+		}
+		
+		@media (min-width: $screen-sm-min) {
+
+			.btn-static-state{
+				// background: transparent!important;	
+			}
+
+			>li {
+				&.wrapper {
+					background: transparent!important;	
+				}
+			}
+		}
+
+		@media (min-width: $screen-md-min) {
+			> li.nav--grouped-links>ul>li {
+		        &:hover,
+		        &:active,
+		        &:focus {
+		        	background: $blue-lighter;
+		        }
+		    }
+		}
+
+		span.description { // button text
+			font-size:14px!important;
+			position: relative;
+	    	top: 2px; 
+		}
+
+	}
+
+	// @media screen and (max-width: 767px) {
+	@media (max-width: $screen-sm-min) {
+	    .push-canvas {
+	        -webkit-transition: all .25s ease-out;
+	        -moz-transition: all .25s ease-out;
+	        -o-transition: all .25s ease-out;
+	        transition: all .25s ease-out;
+
+	        overflow-x: hidden;
+	        position: relative;
+	        left: 0;
+	    }
+	    
+	    .push-canvas.pushed-left {
+	        left: -85%;
+	        // Body: stop body scrolling
+	        overflow: hidden;
+	    }
+	    
+	    .push-canvas.pushed-right {
+	        left: 50%;
+	    }
+	    
+	    .navbar-push {
+	        -webkit-transition: all .25s ease-out;
+	        -moz-transition: all .25s ease-out;
+	        -o-transition: all .25s ease-out;
+	        transition: all .25s ease-out;
+
+	        height: 92%;
+	        position: fixed;
+	        width: 85%;
+	        top: 50px;
+	    }
+	    
+	    .navbar-push.navbar-push-left {
+	        right: -85%;
+	    }
+	    
+	    .navbar-push.navbar-push-right {
+	        left: -50%;
+	    }
+	    
+	    .navbar-push.navbar-push-right.in {
+	        left: 0;
+	    }
+	    
+	    .navbar-push.navbar-push-left.in {
+	        right: 0;
+	        overflow: scroll;
+	        z-index: 99;
+	    }
+	} // End: @media ($screen-sm-min)
+
+	@media (min-width: $screen-sm-min) {  
+		max-width: 1170px;
+		margin: 0 auto;
+
+		&.navbar {
+		// max-height: 66px;
+		}
+
+		.navbar-push {
+			@include make-sm-column(8);
+			float: right!important;
+			background: transparent; // TODO: add to variable
+			.dropdown-toggle .description {
+				display: none;
+			}
+			padding-top: 0;
+		}
+	}
+
+	.nav--grouped-links>ul>li>a{
+		text-transform: uppercase;
+	}
+}
+

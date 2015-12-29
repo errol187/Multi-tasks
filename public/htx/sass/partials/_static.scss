@@ -1,0 +1,32 @@
+.mod__cookies,
+.mod__privacy {
+
+	.title{
+		@include emphasiseFont(14px);
+	}
+
+	&--header {
+		@include make-xs-column(12);	
+	}
+	&--row {
+		@include make-row();
+	}
+	&--body,
+	&--links,
+	&--office,
+	&--questions,
+	&--address {
+		@include make-xs-column(12);
+		margin-bottom: $padding-large-vertical;
+		h2 
+		{
+			font-size: $font-size-large;
+		}
+		h3 {
+			font-size: $font-size-h4;	
+		}
+	}
+	&--link {
+		display: block;
+	}
+}

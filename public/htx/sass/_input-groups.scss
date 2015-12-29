@@ -1,0 +1,27 @@
+//
+// Input groups
+// --------------------------------------------------
+
+// Base styles
+// -------------------------
+.input-group {
+
+  .form-control {
+  	border:none;
+
+  }
+}
+
+
+// Text input groups
+// -------------------------
+.input-group-addon {
+  border: none; 
+}
+
+.has-success {
+	.input-group-addon {
+		background-color: $body-bg; 
+		color: $gray-darker; 
+	}
+}

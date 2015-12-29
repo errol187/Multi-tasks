@@ -1,0 +1,17 @@
+#Far Future Expires Header
+<FilesMatch "\.(ico|jpe?g|png|gif|swf|css|js)$">
+	ExpiresActive On
+	ExpiresDefault "access plus 2692000 seconds"
+
+        Header set Cache-Control "max-age=2692000, public"
+</FilesMatch>
+
+RewriteEngine On
+
+# Forbid access to .svn files
+RewriteRule "\.svn" "-" [F,L]
+
+# Rules for versionned public files
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(css|js|scripts)/[\d\.]+/(.+)\.(js|css)$ /$1/$2.$3 [L]

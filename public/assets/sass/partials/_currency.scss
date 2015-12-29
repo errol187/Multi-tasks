@@ -1,0 +1,140 @@
+/* Currency */
+.mod__currency {
+  
+  .list-group {
+    margin-bottom:0;
+    @include clearfix();
+    float: left;
+    background-color: $gray-light; 
+
+    >li>.list-group {
+      border-top: 2px solid $gray-dark;
+      @media (min-width: $screen-sm-min) {
+        border-top: none;
+      }
+
+      margin-bottom:0;
+      @include clearfix();
+      background-color: #ffffff; 
+    }
+
+    .list-group-item {
+     
+      @media (min-width: $screen-sm-min) {
+        @include make-sm-column(4);
+      }
+      @media (min-width: $screen-md-min) {
+        &:hover,
+        &:active,
+        &:focus {
+          background: $blue-lighter;
+        }
+      }
+
+    }
+    
+  }
+
+  .dropdown-menu{
+    background-color: $gray-lighter;
+  }
+
+}
+
+.js-dropdown.mod__currency {
+
+  .dropdown-menu {
+    padding: 0;
+    @media (min-width: $screen-sm-min) {
+      // @include make-row();
+      .dropdown-header {
+        display: block;
+        color: $blue-dark;
+        @include emphasiseFont($font-size-medium);
+        margin-top: 15px;
+      }
+    }
+  }
+  color: white;
+  button.btn-static-state {
+    color: white;
+    &:hover,
+    &:active,
+    &:focus {
+      color: white;
+    }
+    .icon.icon-HT_sml-chevron-down,
+    .icon.icon-HT_sml-chevron-up {
+      color: white;
+      @media (min-width: $screen-sm-min) {
+        color: $blue-dark;
+      }
+      &:before{
+        font-size: 8px; 
+      }
+      
+    }
+  }
+
+  @media (min-width: $screen-md-min) {
+    &.dropdown__adjacent {
+
+      &.open {
+        display: block;
+      }
+      > button {
+        max-height: 50px;
+        max-width: 71px;
+        height: 50px;
+        margin-top: -5px;
+
+        &:hover,
+        &:focus,
+        &:active {
+          background: $blue-lighter;
+        }
+      }
+    }
+  }
+}
+
+//@media (min-width: $screen-sm-min) {
+  .js-dropdown.mod__currency {
+  
+    .dropdown-menu {
+      // @include make-row();
+
+      @media (min-width: $screen-sm-min) {
+        width: 750px;
+        left: -685px;
+        position: absolute;
+      }
+
+      // opacity: 0;
+      // display: block;
+      // @include transition(1s linear);
+      .dropdown-header {
+        padding-left: 15px;
+
+        &.allCurriences {
+          float: left;
+          width: 100%;
+          background: white;
+          padding-top: 20px;
+          border-top: 2px solid $gray-dark;
+        }
+      }
+    }
+
+    &.open {
+      .dropdown-menu {
+        // opacity: 1;
+        // display: block;
+        // @include transition(1s linear);
+      }
+    }
+
+  }
+
+//} // @media
+
