@@ -1,0 +1,77 @@
+.mod__payment-type {
+  
+  fieldset {
+    @include make-row();
+    legend {
+      margin-left: 15px;
+        margin-right: 15px;
+          padding-left:0;
+          padding-right:0;
+          width: 90%;
+    }
+    label {
+      display: block;
+    }
+    @media (min-width: $screen-md-min) {
+      border-bottom: 1px solid $gray;
+    }
+  }
+  
+  .form-group {
+    @include make-xs-column(12);
+    @media (min-width: $screen-md-min) {
+       >label {
+        width: 212px;
+        float: left;
+        margin-right: 15px;
+        //margin-left: -15px;
+      }
+      width: 40%;
+      >.input-group {
+        &.cardicon-1 {
+          width: 45%; 
+          padding-left: 10px;
+          input {
+            margin-right: 10px;
+          }
+        }
+        &.cardicon-2 {
+          width: 49%;  
+          input {
+            margin-right: 10px;
+          }
+        }
+      }
+      
+    }
+    .input-group {
+      
+      input {
+        @include make-xs-column(1);
+      }
+    }
+  }
+  
+  &--logos {
+    @include make-xs-column(10);
+    
+    @media (min-width: $screen-md-min) {
+      width: 200px;
+      float: none;
+    }
+    img {
+      width:20%;
+      margin: 5px;
+      float: left;
+
+      @media (min-width: $screen-md-min) {
+        width: 42px;
+      }
+    }
+  }
+
+  @media (min-width: $screen-md-min) {
+      //width: 1150px;
+      margin: 0 auto;
+    }
+}

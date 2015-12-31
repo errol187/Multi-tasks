@@ -1,0 +1,503 @@
+// Left/right controls for nav
+// ---------------------------
+
+.carousel-control {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: $carousel-control-width;
+  @include opacity($carousel-control-opacity);
+  font-size: $carousel-control-font-size;
+  color: $carousel-control-color;
+  text-align: center;
+  text-shadow: $carousel-text-shadow;
+  // We can't have this transition here because WebKit cancels the carousel
+  // animation if you trip this while in the middle of another animation.
+
+  // Set gradients for backgrounds
+  &.left {
+    @include gradient-horizontal($start-color: rgba(0,0,0,0), $end-color: rgba(0,0,0,0));
+  }
+  &.right {
+    left: auto;
+    right: 0;
+    @include gradient-horizontal($start-color: rgba(0,0,0,0), $end-color: rgba(0,0,0,0));
+  }
+
+  // Hover/focus state
+  &:hover,
+  &:focus {
+    outline: 0;
+    color: $carousel-control-color;
+    text-decoration: none;
+    @include opacity(1);
+  }
+
+}
+
+// Wrapper for the slide container and indicators
+.carousel {
+  position: relative;
+}
+
+.carousel-inner {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+
+  > .item {
+    display: none;
+    position: relative;
+    @include transition(.6s ease-in-out left);
+
+    // Account for jankitude on images
+    > img,
+    > a > img {
+      @include img-responsive;
+      line-height: 1;
+    }
+
+    // WebKit CSS3 transforms for supported devices
+    @media all and (transform-3d), (-webkit-transform-3d) {
+      @include transition-transform(0.6s ease-in-out);
+      @include backface-visibility(hidden);
+      @include perspective(1000px);
+
+      &.next,
+      &.active.right {
+        @include translate3d(100%, 0, 0);
+        left: 0;
+      }
+      &.prev,
+      &.active.left {
+        @include translate3d(-100%, 0, 0);
+        left: 0;
+      }
+      &.next.left,
+      &.prev.right,
+      &.active {
+        @include translate3d(0, 0, 0);
+        left: 0;
+      }
+    }
+  }
+
+  > .active,
+  > .next,
+  > .prev {
+    display: block;
+  }
+
+  > .active {
+    left: 0;
+  }
+
+  > .next,
+  > .prev {
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  > .next {
+    left: 100%;
+  }
+  > .prev {
+    left: -100%;
+  }
+  > .next.left,
+  > .prev.right {
+    left: 0;
+  }
+
+  > .active.left {
+    left: -100%;
+  }
+  > .active.right {
+    left: 100%;
+  }
+
+}
+
+// MOD: Custom carousel 
+// Carousels
+.mod__carousel {
+
+  margin-bottom: 25px;
+
+  .carousel-caption {
+    top: 15%;
+    bottom: 15%;
+    padding: 5px 0;
+  }
+
+  .carousel-control {
+
+    opacity: 1;
+    top:10%;
+    bottom:10%;
+
+    .icon {
+      position: absolute;
+      top: 45%;
+
+      &.icon-HT_lrg-chevron-left {
+        left: 10px;
+      }
+
+      &.icon-HT_lrg-chevron-right {
+        right: 10px;
+      }
+
+      &.icon-HT_circ-chevron-left {
+        left: -10px;
+      }
+
+      &.icon-HT_circ-chevron-right {
+        right: -10px;
+
+      }
+
+      &.icon-HT_circ-chevron-left,
+      &.icon-HT_circ-chevron-right {
+        text-shadow: none!important;
+        color: $gray-dark;
+        &:before {
+          font-size: 30px;
+        }
+
+      }
+    }
+
+
+  }
+
+  p {
+
+    small {
+      font-size: 60%;
+      line-height: .5; 
+    }
+  }
+
+  .carousel-indicators {
+    bottom:0;
+    li {
+      background-color: #fff;
+      &.active {
+        background-color: $blue;
+        border: 1px solid $blue;
+      } 
+    }
+    
+  }
+
+  .mod__info--list {
+    display: table;
+    margin-bottom: 0;
+    margin-top: 15px;
+  }
+
+  &--no-margin {
+    margin-bottom:0
+  }
+
+  &--row {
+    @include make-row();  
+    z-index: 0;
+  }
+  &--header {
+
+    @include make-row();  
+    background: #dad9d8!important;
+    font-weight: bold;
+
+    .heading {
+      margin: 0;
+      @media (min-width: $screen-md-min) {
+        max-width: 1170px;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  &--border {
+    border-color: transparent!important;
+  }
+
+  &--copy {
+    // bottom: 30%;
+   //    position: absolute;
+   //    left: 1%;
+   //    right: 1%;
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex; 
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+    height: 100%;
+
+    @media (min-width: $screen-md-min) {
+      font-size: 200%;
+    }
+  }
+
+  &--logo {
+    bottom: 0;
+    position: absolute;
+    left: 1%;
+    right: 1%;
+    @media (min-width: $screen-md-min) {
+      font-size: 150%;
+    }
+  }
+
+  &--image {
+    opacity: 1;
+    z-index: 1;
+    &.out {
+      opacity: 0;
+      z-index: -1;
+    };
+    
+  }
+
+  &--more-info {
+      // min-height: 300px;
+      .panel-body {
+        position: relative;
+        padding: 10px 35px;
+        min-height: 180px;
+      }
+      .panel-footer {
+
+      }
+
+      button.close span{
+        position: fixed;
+        top: 5px;
+        right: 10px;
+        font-size: 24px;
+      }
+  }
+  
+  &-img {
+    
+    background-size: cover!important;
+    -webkit-background-size: cover!important;
+    -moz-background-size: cover!important;
+    -o-background-size: cover!important;
+    -ms-background-size: cover!important;
+    
+
+    @media (max-width: $screen-xs-min) {
+      min-width: 320px;
+      height: 158px;
+      background-repeat: no-repeat;
+      &1{
+        @include img-retina("/images/mobile/carousel/slide1-mobile-1x.jpg", "/images/mobile/carousel/slide1-mobile-2x.jpg", 320px, 158px);  
+      
+      }
+      &2{
+        @include img-retina("/images/mobile/carousel/slide2-mobile-1x.jpg", "/images/mobile/carousel/slide2-mobile-2x.jpg", 320px, 158px);  
+      
+      }
+      &3{
+        @include img-retina("/images/mobile/carousel/slide3-mobile-1x.jpg", "/images/mobile/carousel/slide3-mobile-2x.jpg", 320px, 158px);  
+      
+      }
+      background-size: contain;
+    }
+
+  @media (min-width: $screen-xs-min) {
+      min-width: 768px;
+      height: 219.5px;
+      background-repeat: no-repeat;
+      &1{
+        @include img-retina("/images/mobile/carousel/slide1-tablet-1x.jpg", "/images/mobile/carousel/slide1-tablet-2x.jpg", 768px, 220px);  
+      
+      }
+      &2{
+        @include img-retina("/images/mobile/carousel/slide2-tablet-1x.jpg", "/images/mobile/carousel/slide2-tablet-2x.jpg", 768px, 220px);  
+      
+      }
+      &3{
+        @include img-retina("/images/mobile/carousel/slide3-tablet-1x.jpg", "/images/mobile/carousel/slide3-tablet-2x.jpg", 768px, 220px);  
+      
+      }
+    }
+
+  @media (min-width: $screen-md-min) {
+      min-width: 1280px;
+      height: 365px;
+      &1{
+        @include img-retina("/images/mobile/carousel/slide1-desktop-1x.jpg", "/images/mobile/carousel/slide1-desktop-1x.jpg", 1280px, 365px);  
+      
+      }
+      &2{
+        @include img-retina("/images/mobile/carousel/slide2-desktop-1x.jpg", "/images/mobile/carousel/slide2-desktop-1x.jpg", 1280px, 365px);  
+      
+      }
+      &3{
+        @include img-retina("/images/mobile/carousel/slide3-desktop-1x.jpg", "/images/mobile/carousel/slide3-desktop-1x.jpg", 1280px, 365px);  
+      
+      }
+    }
+  }
+    
+
+    // &2{
+    //   @media (min-width: $screen-md-min) {
+
+    //   .img-retina("/img/bg-1x.png", "/img/bg-2x.png", 100px, 100px);  
+    //   }
+    // }
+
+    // &3{
+    //   @media (min-width: $screen-md-min) {
+
+    //   .img-retina("/img/bg-1x.png", "/img/bg-2x.png", 100px, 100px);  
+    //   }
+    // }
+    
+
+//  }
+  &--transfers {
+    background-color: $gray-light;
+
+    .title {
+      @include emphasiseFont(20px);
+    }
+
+    .carousel-inner {
+      position: relative;
+    }
+
+    .carousel-indicators {
+      bottom:0;
+      li {
+        background-color: #fff;
+        border: 1px solid $gray;
+        &.active {
+          background-color: $blue;
+          border: 1px solid $gray;
+        } 
+      }
+      
+    }
+    
+    .panel-body {
+      // overflow: hidden;
+      padding: 0 35px 10px;
+    }
+    .panel-heading {
+      text-align: center;
+      font-weight: bold;
+      font-size: 24px;
+      padding:0;
+      @include make-xs-column(10);
+      float:none;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      // height: 52px;
+      
+      h1 {
+        font-size: 24px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+    }
+
+    .panel {
+      margin: 15px;
+    }
+
+    &-image {
+      // max-height: 582px;
+      overflow: hidden;
+      width: 100%;
+      opacity:1;
+      @include transition(.5s ease-out);  
+
+      &.noShow {
+        // max-height: 0;
+        // overflow: hidden;
+        @include transition(.5s ease-out);  
+        opacity:0;
+
+      }
+    }
+
+    &--wrapper {
+      @media (min-width: $screen-md-min) {
+        max-width: 1170px;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  footer.panel-footer {
+    text-align: center;
+    .btn {
+      &:focus,
+      &:active,
+      &:hover
+       {
+        color: $gray-darker;
+      }
+    }
+  }
+}
+
+
+.owl-buttons {
+  .owl-prev,
+  .owl-next {
+    position: absolute;
+    top: 38%;
+    .icon {
+      color: $gray-dark;
+      &:before {
+        font-size: 30px;
+      }
+    }
+  }
+  
+  .owl-prev {
+    left: -10px;
+  }
+
+  .owl-next {
+    right: -10px;
+  }
+}
+
+.owl-theme {
+    
+      .owl-item {
+        button.close span{
+          top: 20px;
+          right: 23px;
+
+        }
+      }
+    
+    .owl-controls {
+      margin-bottom: 15px;
+      .owl-page {
+        display: inline-block;
+        zoom: 1;
+    }
+  }
+} 
+
+.owl-theme .owl-controls .owl-buttons div {
+  background: transparent!important;
+}

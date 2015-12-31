@@ -1,16 +1,26 @@
 'use strict';
 
 module.exports = function(grunt) {
-
-	// var affCode = grunt.option('target');
-	var affCode = grunt.option('target'); 
+	
+	// Specify the target and alternative sass files directory
+	if ( grunt.option('target') !== undefined) {
+		// var affCode = grunt.option('target');
+		// var affCode = grunt.option('target'); 
+		var affCode = 'sass-' + grunt.option('target');	
+	} else {
+		var affCode = 'sass';	
+	}
+	
+	console.log(affCode);
 	var taskProcess = grunt.option('proc'); 
-	var _ = require('underscore');
+//	var _ = require('underscore');
 
 	var sass = require('node-sass');
 	require('time-grunt')(grunt);
-	//require('load-grunt-tasks')(grunt);
-	require('jit-grunt')(grunt);
+	require('load-grunt-tasks')(grunt);
+	require('jit-grunt')(grunt, {
+		replace : 'string-replace'
+	});
 
     grunt.initConfig({
 
@@ -18,19 +28,42 @@ module.exports = function(grunt) {
 
 		project: {
 		    app: ['public'], // Default is Conxxe
-		    assets: ['<%= project.app %>/' + affCode],
-		    // assets: ['<%= project.app %>/assets'],
+		    // assets: ['<%= project.app %>/' + affCode],
+		    assets: ['<%= project.app %>/assets'],
 		    assetsPublic: ['<%= project.app %>/public'],
-		    sass: ['<%= project.assets %>/sass'],
+		    sass: ['<%= project.assets %>/' + affCode], // Assests folder holds all affiliate sub-directories
 		    css: ['<%= project.assets %>/css'],
 		    jsSrc: ['<%= project.assets %>/javascripts'],
 		    images: ['<%= project.assets %>/images'],
 		},
 
+		// Replace sass paths for compiling/@import
+		// Use carefully and as required
+		// Always set the target so as to only modify the specified file(s)
+		// e.g. grunt replace:dist --target=htx
+		replace: {
+			dist: {
+				// files: {
+		  //         '<%= project.assets %>/<%= grunt.option(\"target\") %>/styles.scss'
+		  //       },
+				src: [
+				'<%= project.assets %>/' + affCode + '/styles.scss',
+				'<%= project.assets %>/' + affCode + '/mixins.scss'
+				// 'public/assets/sass-htx/styles.scss',
+				// 'public/assets/sass-htx/mixins.scss'
+				],
+        		overwrite: true,
+        		replacements: [{
+		            from: /(assets\/sass)/g,
+		            to: 'assets/'+ affCode
+		        }]
+			}
+		},
+
 		sass: {
 		    dev: {
 		        options: {
-		            style: 'expanded',
+		            style: 'compressed',
 		            compass: false,
 		            loadPath: '.', // root
 		            sourcemap: 'none',
@@ -38,7 +71,8 @@ module.exports = function(grunt) {
 		        },
 		        files: {
 
-		        	// Compile sass files to css
+		        	// Compile sass files to css folder e.g css/styles.css
+		        	// Affiliates folder is set at runtime e.g. --target=htx
 		            '<%= project.assets %>/css/styles.css' : '<%= project.sass %>/styles.scss'
 		        }
 		    }
@@ -86,6 +120,8 @@ module.exports = function(grunt) {
 		watch: {
     		sass: {
 		        files: '<%= project.sass %>/**/*.scss',
+		        // Clean: clear css files
+		        // Sass: 
 		        tasks: ['clean:css', 'sass:dev', 'copy:css'],
 
 		        options: {
@@ -166,6 +202,8 @@ module.exports = function(grunt) {
 			'<%= project.assets %>/javascripts/combined.js',
 			'<%= project.assets %>/javascripts/._*.js',
 		],
+		//	Delete css files ready for new compiled versions
+		//	.__ files are derived from Macintosh file systems
 		css: ['<%= project.assets %>/css/*.css', '<%= project.assets %>/css/*.map', '<%= project.sass %>/**/.__*.*']
 	},
 
@@ -211,6 +249,26 @@ module.exports = function(grunt) {
 
 		},
 
+		sass: {
+
+			files: [
+				// This is a new build for affiliates - copy required files
+				// called with grunt newBuild:sass:(string).
+				// string = affiliate argument at index args[1]
+				// 1. Copy Bootstrap and sass files
+	  			{ 
+	  				expand: true, 
+	  				cwd: '<%= project.sass %>/',
+	  				flatten: false,
+	  				src: ['**'], 
+	  				// dest: '<%= project.app %>/<%= grunt.option(\"target\") %>/sass/'
+	  				dest: '<%= project.assets %>/sass-<%= grunt.task.current.args[0] %>/'
+	  				
+	  			} // Sass
+
+  			]
+  		},
+
 		jsSrc: {
 			files: [
 			// includes files within path 
@@ -221,9 +279,10 @@ module.exports = function(grunt) {
 
   		css: {
 			files: [
-			// includes files within path 
-			{ src: '<%= project.css %>/styles.css', dest: '<%= project.assetsPublic %>/css/styles.css' } // CSS
-			// { src: '<%= project.css %>/styles.css', dest: '<%= project.assetsPublic %>/css/' + affCode + '/styles.css' } // CSS
+			// Copy to public folder location
+			// This includes affiliates, defined in affCode global at runtime e.g. --target=htx
+			// { src: '<%= project.css %>/styles.css', dest: '<%= project.assetsPublic %>/css/styles.css' } // CSS
+			{ src: '<%= project.css %>/styles.css', dest: '<%= project.assetsPublic %>/css/<%= grunt.option(\"target\") %>/styles.css' } // CSS
   			]
   		},
 
@@ -240,6 +299,7 @@ module.exports = function(grunt) {
     // can make use of `rem` units. This is essentially a grunt front end to the
     // [clean-css](https://github.com/jakubpawlowicz/clean-css#how-to-set-compatibility-mode) 
     // utility.
+    // e.g. grunt cssmin --target=htx
     cssmin: {
     	options: {
 	        compatibility: 'ie8',
@@ -251,17 +311,23 @@ module.exports = function(grunt) {
 	        roundingPrecision: -1
       	},
 
-      	//
-      	target: {
-      		files: {
-      			'!<%= project.css %>/research.css': ['!<%= project.css %>/research.css']
-      		}
+      	prod: {
+      		files: [{
+      			expand: true,
+		      	cwd: '<%= project.css %>/',
+		      	src: ['*.css', '!*.min.css'],
+		      	// src: '<%= project.css %>/styles.css', 
+		      	dest: '<%= project.assetsPublic %>/css/<%= grunt.option(\"target\") %>/', // CSS
+		      	// dest: '<%= project.css %>/css/',
+		      	ext: '.min.css'
+		    }]
       	}
+
       }
   });
 
     // grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.registerTask('default', ['sass']);
+    // grunt.registerTask('default', ['sass']);
 	
 	// grunt.loadNpmTasks('grunt-contrib-watch');
 	// grunt.loadNpmTasks('grunt-cssjoin');
@@ -274,8 +340,8 @@ module.exports = function(grunt) {
 	// grunt.loadNpmTasks('grunt-contrib-copy');
 	// grunt.loadNpmTasks('grunt-spritesmith');
 
-	// Run everything
-	grunt.registerTask('default', ['clean', 'sass', 'uglify', 'concat', 'copy:sSrc', 'copy:css', ]);
+	// Default: Run everything
+	// grunt.registerTask('default', ['clean', 'sass', 'uglify', 'concat', 'copy:sSrc', 'copy:css', ]);
 
 	// Create a new build
 	// Copy bootstrap and compile with current template to another folder
@@ -291,7 +357,7 @@ module.exports = function(grunt) {
 	// 
 	// 
 
-	grunt.registerTask('newBuild', 'New build for affiliates',  function(arg) {
+	grunt.registerTask('newBuild', 'New build for affiliates',  function() {
 
 		/*
 		* [Arg: 'All', 'Sass', 'Js']
@@ -322,11 +388,16 @@ module.exports = function(grunt) {
 		// }
 
 		// Run tasks
-		// grunt.task.run('copy:' + taskProcess);
+		// grunt.task.run('copy:' + grunt.task.current.args[0] + ':' + grunt.task.current.args[1]);
 		// COMMAND EXAMPLE:
 		// grunt newBuild watch  --target=htx/ (target will set affCode)
-		grunt.task.run('watch' );
+		// grunt.task.run('watch' );
+		console.log("GRUNT:TASK = ", grunt.task.current.args[0], grunt.task.current.args[1], affCode);
 
 	});
+	
+	// Production tasks
+	// cssmin: (minify css ready for prouction) e.g. grunt production --target=htx
+	grunt.registerTask('production', ['cssmin:prod']);
 
 };

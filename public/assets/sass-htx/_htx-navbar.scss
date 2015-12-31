@@ -1,0 +1,185 @@
+// @import 'public/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_mixins';
+
+//
+// Navbars
+// --------------------------------------------------
+
+
+.navbar-brand {
+  padding: $navbar-padding-vertical $navbar-padding-horizontal;
+  font-size: $font-size-large;
+  line-height: $line-height-computed;
+  height: $navbar-height;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  -webkit-align-items: center;
+  
+
+  @include make-xs-column(9);
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+
+  > img,
+  > a {
+    //display: inline-table;
+    max-height: 100%;
+    max-width: 100%;
+
+    &:nth-child(1){
+      margin-right: 15px;
+    }
+  }
+}
+
+// Alternate navbars
+// --------------------------------------------------
+
+// Default navbar
+.navbar-default,
+.navbar-collapse,
+.navbar-push,
+.navbar-form,
+.navbar-toggle {
+	border: none;
+
+	.navbar-toggle {
+    margin-right: 0;
+    max-height: 35px;
+
+    // Icons
+    .icon-HT_close:before{
+      color: $navbar-default-toggle-icon-bar-bg;
+      font-weight: bold;
+    }
+    	
+    &:hover,
+    &:focus {
+    	background-color: $navbar-default-toggle-hover-bg;
+    }
+    .icon-bar {
+    	background-color: $navbar-default-toggle-icon-bar-bg;
+      height: 3px;
+    }
+  }
+
+}
+
+.navbar {
+    
+    max-height: 50px;
+    
+    &-collapse,
+    &-push {
+
+      background-color: $blue-darker;
+      padding-top: 15px;
+      >ul{
+          >li {
+        // @include make-sm-column(2);
+        @media (min-width: $screen-sm-min) {
+          // margin-top: 0!important;
+          // float: right;
+
+        }
+        &.wrapper {
+          @media (min-width: $screen-sm-min) {
+            
+            @include make-sm-column(1);
+            margin-top: 0!important;
+            
+            padding: 0;
+
+            &:nth-child(1) {
+              background: transparent!important;
+              position: absolute;
+              right: 10px;
+              top: 5px;
+            }
+
+            &:nth-child(2) {
+              background: transparent!important;
+              position: absolute;
+              right: 80px;
+              top: 5px;
+            }
+            
+          }
+            button {
+              text-transform: capitalize!important;
+          }
+        }
+      }
+
+      &.in {
+        padding-bottom: 15px;
+        border: none;
+      }
+
+      }
+    
+
+    }
+
+    &-default {
+      //@include box-shadow($shadow);
+      // TODO: Add to mixin
+      // -webkit-box-shadow: 0px 3px 8px 1px #393A46;
+      // -moz-box-shadow: 0px 3px 8px 1px #393A46;
+      // box-shadow: 0px 3px 8px 1px #393A46;    
+    }
+}
+
+#calendarBack {
+  position: fixed!important;
+  background: $blue;
+  color: $body-bg;
+  padding: $padding-large-horizontal;
+  z-index: 9;
+  
+  @include make-xs-column(12);
+  @include translate3d(0, -100%, 0);
+  @include transition-transform(0.6s ease-in-out);  
+
+  &.in {
+    @include translate3d(0, 0, 0);
+    @include transition-transform(0.6s ease-in-out);  
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  .icon {
+    padding-right: 10px; 
+    &:before {
+      font-size:18px;
+    }  
+  }
+  
+
+}
+
+// TODO: Header/Nav/navbar height requires reviewing and refactoring
+@media (min-width: $screen-sm-min) {
+
+  .navbar-header {
+    // @include make-lg-column(2);
+  }
+  .navbar-push {
+      // background: transparent; // TODO: add to variable
+
+      .dropdown-toggle .description {
+        display: none;
+
+      }
+  }
+
+}
+
+

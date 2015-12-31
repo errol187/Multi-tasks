@@ -1,0 +1,242 @@
+
+.com__new-booking {
+
+	.form-group {
+		// background: red;
+	}
+
+	fieldset {
+		margin-bottom:$default-margin-bottom;
+		@media (min-width: $screen-md-min) {
+			label {
+				margin-top: 8px;
+				font-size: 16px;
+			}
+		}
+		legend {
+			border: none;
+		}
+	}
+
+	.mod__lead-passenger,
+	.mod__transfer-details,
+	.mod__accommodation-details,
+	.mod__billing-details,
+	.mod__card-details {
+		@media (min-width: $screen-md-min) {
+		    .more-info {
+				width: 100%;
+				.icon {
+					width:20px;
+					&:before {
+				  	top: -18px;
+					}
+				}
+				p {
+					padding-left: 15px;
+				}
+		    }
+		}
+		&--col {
+			@media (min-width: $screen-md-min) {
+		      >.form-group {
+		        @include make-xs-column(7); 
+		        >label {
+		          width: 212px;
+		          float: left;
+		          margin-right: 15px;
+		          margin-left: -15px;
+		        }
+		        >.input-group {
+		          width: 411px;
+		        }
+		        &.mod__card-details--date,
+		        &.mod__card-details--exp-date  {
+		        	select {
+		        		width: 25%;	
+		        		margin-right: 15px;
+		        		&.mod__card-details--start-mnth,
+		        		&.mod__card-details--ex-mnth {
+		        			margin-right: 15px;
+		        		}
+		        		&.mod__card-details--start-yr,
+		        		&.mod__card-details--ex-yr {
+		        			float: none;
+		        		}
+		        	}
+		        }
+		      }
+		      .mod__lead-passenger--name,
+		      .mod__lead-passenger--mobile,
+		      #arrival_accommodation_details,
+		      #departure_accommodation_details {
+		        @include make-xs-column(8); 
+		        .form-group {
+		          >label {
+		            width: 212px;
+		            float: left;
+		            margin-right: 15px;
+		            margin-left: -15px;
+		          }
+		          >.input-group {
+		            width: 411px;
+		          }
+		        }
+		      }
+		      @media (min-width: $screen-md-min) {
+			      #arrival_accommodation_details,
+			      	#departure_accommodation_details {
+			      	width: 680px;
+			      }
+
+			      #arrival_accommodation_details {
+			      	.form-group {
+			      		&:nth-child(3) {
+				      		.help-block {
+				              width: 411px;
+				              margin-left: 0;
+				            }
+				      	}	
+			      	}
+			      	
+			      }
+
+			      
+			  }
+
+		      #arrival_accommodation_details,
+		      #departure_accommodation_details {
+				.form-group:nth-child(3),
+				.form-group:nth-child(4) {	
+					margin-left: 212px;
+				}
+		      }
+
+		      .mod__billing-details--addr2,
+		      .mod__billing-details--addr3 {
+				margin-left: 212px;
+		      }
+				
+				
+		    }
+		}
+	} // End mods
+
+	@media (min-width: $screen-md-min) {			
+      .mod__billing-details--addr2 {
+		width: 452px!important;
+		.help-block {
+			margin-left: 0!important;
+		}
+      }
+      .mod__card-details--col {
+      	.input-group {
+			width: 65%;
+      	}
+      }
+  }
+	
+	@media (min-width: $screen-md-min) {
+	      #departure_transfer_details,
+	      #departure_flight_number {
+	      	>.form-group {
+		        @include make-xs-column(7); 
+		        >label {
+		          width: 212px;
+		          float: left;
+		          margin-right: 15px;
+		          margin-left: -15px;
+		        }
+		        >.input-group {
+
+		        	& {
+		        		width: 100%;
+		        		label {
+			        		width: 212px;
+							float: left;
+							margin-right: 15px;
+							margin-left: -15px;		
+			        	}
+			        }
+			        select {
+			        	width: 411px;  	
+			        }
+		        }
+		      }
+	      } 
+		
+		#departure_flight_number {
+			.input-group {
+            	width: 411px!important;
+          	}
+		}
+	      // .mod__lead-passenger--name,
+	      // .mod__lead-passenger--mobile {
+	      //   @include make-xs-column(8); 
+	      //   .form-group {
+	      //     >label {
+	      //       width: 212px;
+	      //       background: red;
+	      //       float: left;
+	      //       margin-right: 15px;
+	      //       margin-left: -15px;
+	      //     }
+	      //     >.input-group {
+	      //       width: 411px;
+	      //     }
+	      //   }
+	      // }
+	}
+
+	    
+	@media (min-width: $screen-md-min) {
+
+		.mod__lead-passenger--col .mod__lead-passenger--name {
+			@include make-md-column(7); 	
+			.mod__lead-passenger--title--col,
+			.mod__lead-passenger--firstname--col {
+				padding-right: 0;
+			}
+			
+		}
+		.has-feedback label ~ .form-control-feedback {
+			top: 0;
+		}
+
+		.help-block.with-errors {
+			width: 411px;
+		    margin-left: 213px;
+		}
+
+		.mod__promotion {
+			fieldset {
+				@include make-row();		
+				.well {
+					width: 652px;
+					margin-left: 15px;
+					@include clearfix ();
+					.form-group {
+						@include clearfix ();
+					}
+					label {
+						width: 192px;
+						float: left;
+						margin: 0;
+					}
+					.input-group {
+						width: 411px;
+						float: right;
+					}
+
+					button {
+						width: 245px;
+    					float: right;
+					}
+				}
+			}
+			
+		}
+	}    
+	
+
+}

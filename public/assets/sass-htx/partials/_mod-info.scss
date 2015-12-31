@@ -1,0 +1,64 @@
+.mod__info {
+
+  &--wrapper {
+    @media (min-width: $screen-md-min) {
+      @include make-row();
+
+    }
+  }
+
+  &--header {
+
+  }
+
+  &--col {
+
+  }
+
+  @media (min-width: $screen-md-min) {
+  &--coverage,
+  &--team {
+    .mod__info--col {
+      @include make-md-column(12); 
+    }
+
+    padding-bottom: 0!important;
+
+    .mod__info--header.well {
+      h2 {
+        width: 1170px;
+        margin:0 auto 11px;
+        padding-left: 15px;
+      }
+    }
+    .mod__info--items {
+        width: 1170px;
+        margin:0 auto;
+        display: block;
+        float:none;
+        @include clearfix();
+      }
+    }
+
+    &--coverage {
+      .mod__info--items {
+        @media (min-width: $screen-md-min) {
+          @include make-md-column(5);
+          float: right!important;
+        }
+      }
+    }
+
+    &--team {
+      .mod__info--list-item {
+        @include make-md-column(3); 
+        .mod__info--img-radius {
+          width: 200px;
+          height: 200px;
+        }
+      }
+    }
+  }   
+
+}
+

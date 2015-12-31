@@ -1,0 +1,12 @@
+@mixin reveal () {
+	.reveal {
+
+		&-opacity {
+			display: block;
+			opacity: 1;
+			// @include translate3d(0, 0, 0);
+			@include transition(opacity 1s ease-in-out);
+
+		}
+	}
+}

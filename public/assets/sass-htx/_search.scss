@@ -1,0 +1,321 @@
+/*
+*
+* Globals
+*/ 
+
+$default-margin-bottom: 15px;
+
+
+// Components (semantic rendering)
+// Utilise bootstrap mixins to layout sections of page
+
+section[class^="comp__search"] {
+
+	h1 {
+		color: #fff;
+		margin:0;
+	}
+
+	.mod__booking--summary {
+		&-button {
+			padding: initial;
+		}
+	}	
+}	
+
+
+.lang-en {
+	section[class^="comp__search"],
+	section.com__tailor-made {
+		.peoples {
+
+			.form-group {
+				
+				label {
+					position: absolute;
+					
+				}			
+			}
+		}
+	}
+}
+
+// section[class^="comp__search"] {
+// 	.peoples {
+
+// 		.form-group {
+			
+// 			label {
+// 				position: absolute;
+				
+// 			}			
+// 		}
+// 	}
+// }
+
+.comp__search {
+	
+	color: $body-bg;
+
+	.title {
+		margin-top:15px;
+		@include emphasiseFont(12px);
+	}
+	+ input.form-control {
+		padding-right: 10px!important;
+	}
+
+	fieldset {
+
+		// Apply to fieldsets or apply classes
+		// This has been removed though it may break things
+		// TODO: Fix issues on mobile
+		
+		// @include make-row();
+		// .form-group {
+		// 	@include make-xs-column(12);		
+		// }
+
+		footer {
+			@include make-xs-column(12);		
+			float: none;
+		}
+
+	}
+
+	footer {
+		margin-bottom: $default-margin-bottom;
+
+		.btn {
+			color: #ffffff;
+		}
+	}
+
+	&--to,
+	&--from,
+	&--pickup,
+	&--return {
+		@include emphasiseFont(10px);
+	}
+
+	&--bg {
+
+		background: 
+	    /* bottom, image */
+	    url("/images/mobile/backgrounds/bg_new-york-dusk-v2.jpg") no-repeat;
+	    -webkit-background-size: cover;
+	    -moz-background-size: cover;
+	    background-size: cover;
+
+	    @media (min-width: $screen-sm-min) {
+	    	padding-bottom: 20px;
+	    }
+	    
+	    .jumbotron {
+	    	background: transparent;
+	    }
+	}
+	
+	&--form {
+		position: relative;
+		background: linear-gradient(
+	      rgba(0, 0, 0, 0.55), 
+	      rgba(0, 0, 0, 0.55)
+	    );
+
+	    label {
+	    	font-weight: 800;
+	    }
+
+	    .form-group.has-feedback {
+			input {
+				padding-right: 10px!important;
+			}
+	    }
+
+	    footer {
+	    	@media (min-width: $screen-md-min) {
+				width: 24.55%;	
+				float: left;
+	    	}
+			
+		}
+	}
+
+	&--destinations {
+		@include make-row();
+
+		input {
+			padding-right:0;
+		}	
+
+		.form-group {
+			@include make-xs-column(12);
+			&.js-switch_direction {
+
+				width: 100%;
+				margin-bottom: $default-margin-bottom;
+				cursor: hand;
+				cursor: pointer;
+
+				span:nth-child(1) {
+					@media (min-width: $screen-md-min) {
+			    		display: none;
+			    	}
+				}
+
+	    		@include make-md-column(1);
+	    		.icon-HT_return {
+						&:before { 
+						display:none;
+				    }
+				}
+
+				@media (min-width: $screen-md-min) {
+					position: absolute;
+					left: 49%;
+					right: 50%;
+					margin-top: 10px;
+					width: 1%;
+
+		    		.icon-HT_vertical-switcher {
+			    		&:before { 
+							display:none;
+					    }
+					}
+					.icon-HT_return {
+						&:before { 
+							display: block;
+						    left: -10px;
+						    position: relative;
+						    z-index: 9;
+				    	}
+					}
+		    	}
+			}
+
+			@media (min-width: $screen-md-min) {
+	    		@include make-md-column(6);
+	    	}
+		}
+	}
+
+} // Search
+
+section[class^="comp__search"] {
+
+	h1 {
+		color: #fff;
+		margin:0;
+	}
+
+	.mod__booking--summary {
+		&-button {
+			padding: initial;
+		}
+	}	
+}	
+
+
+.lang-en {
+	section[class^="comp__search"],
+	section.com__tailor-made {
+		.peoples {
+
+			.form-group {
+				
+				label {
+					position: absolute;
+					
+				}			
+			}
+		}
+	}
+}
+
+
+.mod__searchform {
+
+	display:none;
+	opacity: 0;		
+}
+
+.mod__search {
+	legend {
+		color: #444444;
+		font-weight: bold;
+		border: none;
+		
+		h2 {
+			font-size: 14px;
+			font-weight: bold;
+		}
+	}
+	
+	&--booking-form {
+		label {
+			color: $gray-darker!important;
+		}
+		.input-group {
+			width: 100%;
+			input,
+			select {
+				border: 1px solid $gray;
+				color: $text-color;
+				background: $gray-light;
+				}
+			}
+		h2 {
+			font-size: 16px;
+   			font-weight: bold;
+   		}
+   		.has-error {
+
+			.form-control {
+		    	@include form-control-validation($state-danger-text, $state-danger-text, $state-danger-bg);
+		    	background-color: $pink-lighter;
+		  }
+
+		}
+	}
+	
+} // mod__search
+
+.mod__journey-type {
+	@include mod__journey-type();
+	
+	@media (max-width: $screen-xs-min) {
+		.journey-type label{
+			max-width: 33%;
+	    	vertical-align: text-top;	
+		}	
+	}
+	
+	
+}
+
+.mod__dates {
+	@include mod__dates();
+}
+
+.mod__travellers {
+	@include mod__travellers();
+}
+
+.mod__journey-type,
+.mod__dates,
+.mod__travellers {
+	&.reveal {
+
+		&-opacity {
+			display: block;
+			opacity: 1;
+			// @include translate3d(0, 0, 0);
+			@include transition(opacity 1s ease-in-out);
+
+		}
+	}
+}
+
+
+
