@@ -151,9 +151,8 @@ module.exports = function(grunt) {
 
 		uglify: {
 			js: {
-				files: { '<%= project.assets %>/javascripts/combined.js': [
-		      		
-		      		'<%= project.assets %>/javascripts/*.js',
+				files: { '<%= project.assetsPublic %>/js/combined.min.js': [
+		      		'<%= project.assets %>/javascripts/combined.js',
 		      		'!<%= project.assets %>/javascripts/*.js.map',
 		      		'!<%= project.assets %>/javascripts/*.min.js'
 		    	]
@@ -181,7 +180,9 @@ module.exports = function(grunt) {
     },
 
 	concat: {
-		// using whichever order of importance you need
+		// Merge all javascript files into one file (combiined.js)
+		// using whichever order of importance is specified
+		// To find out more about ordering refer to grunt help files
 	  	'<%= project.assets %>/javascripts/combined.js': [
 	  		'!<%= project.assets %>/javascripts/combined.js',
 	  		'<%= project.app %>/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
@@ -252,7 +253,7 @@ module.exports = function(grunt) {
 		sass: {
 
 			files: [
-				// This is a new build for affiliates - copy required files
+				// New build for affiliates - copy required files
 				// called with grunt newBuild:sass:(string).
 				// string = affiliate argument at index args[1]
 				// 1. Copy Bootstrap and sass files
