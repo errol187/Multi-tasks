@@ -12,6 +12,7 @@ Grunt process (to be added to sccript)
 
 ******************************************************************************************
 Workflow summary:
+
 [Css]
 All css files are generated from sass files. For each project a folder is created under the assets directory.
 e.g. sass-{affiliate-append} Where affiliate-prefix is relative to the white label company 
@@ -26,8 +27,8 @@ e.g. htx.js
 ******************************************************************************************
 
 TODO:
-Update task to dynamically add the required javascript prefix e.g htx.js
-Update readme.md file and apply additonal explanations inside grunt file
-Update information in regards to command line variables
-Combine tasks for a single command line workflow process e.g grunt build:new:affiliate
-Development to apply brand colors by replacment inside 'variables.scss' file specific to the affiliate project
+1. Update task to dynamically add the required javascript prefix e.g htx.js
+2. Update readme.md file and apply additonal explanations inside grunt file
+3. Update information in regards to command line variables
+4. Combine tasks for a single command line workflow process e.g grunt build:new:affiliate
+5. Development to apply brand colors by replacment inside 'variables.scss' file specific to the affiliate project
