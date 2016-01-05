@@ -10,9 +10,11 @@ Workflow summary:
 
 ## Basic cloning of default assets 
 To copy all files by running task 1.  
-Once files are copied you can watch the affiliates folder for changes by running task 2.  
+Paths need updating in src files running task 2. (Only for sass files)     
+Once files are copied you can watch the affiliates folder for changes by running task 3.  
 
 1. _Run this task with the `grunt copy:all` command._   
+2. _Run this task with `grunt replace:dist --target=htx` command_
 2. _Run this task with the `grunt watch --target=[affiliateCode]` command._   
 
 Grunt 'watch' will run:   
