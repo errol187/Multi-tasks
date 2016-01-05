@@ -22,6 +22,16 @@ Grunt 'watch' will run:
 Css tasks - `clean:css` `sass:dev` `copy:css`  
 Js tasks - `clean:js` `concat` `copy:jsSrc`  
 
+## Basic development  
+If development is in progress there will be no need for a new build process (Basic Cloning).
+
+1. _Run this task with the `grunt watch --target=[affiliateCode]` command._   
+
+Grunt 'watch' will run:   
+
+Css tasks - `clean:css` `sass:dev` `copy:css`  
+Js tasks - `clean:js` `concat` `copy:jsSrc`  
+
 
 ## Production
 To be run when minificatiion and clean up of files is required for a release.
@@ -61,7 +71,9 @@ This plugin uses:
 grunt `>=0.4.0`   
 grunt-cli `>=0.1.0`
 
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:   
+
+Be sure to have folder ... `[node_modules]` and file(s) ... `package.json`, `Gruntfile.js` before running `npm install` command.
 
 ```shell
 npm install
