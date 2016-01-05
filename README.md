@@ -7,7 +7,27 @@
 ******************************************************************************************
 Workflow summary:
 
-[Css]
+
+## Basic cloning of default assets to copy all files by running task 1. Once files are copied you can watch the affiliates folder for changes by running task 2.
+1. _Run this task with the `grunt copy:all` command._
+2. _Run this task with the `grunt watch --target=[affiliateCode]` command._
+
+Grunt 'watch' will run:
+Css tasks - `clean:css` `sass:dev` `copy:css` 
+Js tasks - `clean:js` `concat` `copy:jsSrc`
+
+
+## Production
+To be run when minificatiion and clean up of files is required for a release.
+
+_Run `grunt production --target=[affiliateCode]` command._
+
+Tasks run `cssmin:prod` `uglify:js` `clean:prod`
+
+
+Minify 
+Note:   
+*** Below is incomplete summary
 All css files are generated from sass files. For each project a folder is created under the assets directory.
 e.g. sass-{affiliate-append} Where affiliate-prefix is relative to the white label company 
 e.g. sass-htx
@@ -17,6 +37,8 @@ Note: the 'default' directory will be used for building affiliates
 Currently affiliate javascript files have a standard approach. and will need a manual update. Apply the white-label {affiliate-prefix}.js file to the bottom of the 'html' template page. 
 e.g. where affiliate-prefix is relative to the white label company
 e.g. htx.js
+
+*** Below is incomplete summary
 
 ******************************************************************************************
 
@@ -54,15 +76,22 @@ _Run this task with `grunt copy:sass:[affiliateCode]` command_
 ## Copy Javascript
 _Run this task with `grunt copy:js:[affiliateCode]` command_
 
+## Copy Images
+_Run this task with `grunt copy:images:[affiliateCode]` command_
+
+## Copy Fonts
+_Run this task with `grunt copy:fonts:[affiliateCode]` command_
+
 ## Update sass file paths
  _Run this task with `grunt replace:dist --target=htx` command_
  - ' currently only the sass files though I am looking into updating the branding color references'
 
 ## Minify Css
-_Run this task with `grunt cssmin --target=[affiliateCode]` command_
+_Run this task with `grunt cssmin:prod --target=[affiliateCode]` command_
 
 ## Minify JS
 _Run this task with `grunt uglify:js --target=[affiliateCode]` command_
+
 
 
 #### --target
@@ -95,18 +124,21 @@ Note: If command line global is not set the default folder will be set to 'htx'
 ```shell
 **Basic Structure with affiliate folder - public folder generated files:**
 .
-├── public
-│   └── public
-│      └── css
-│         └── [affiliateCode]
-│             └── *.min.css
-├──────── js
-│        └── [affiliateCode]
-│            └── *.min.js
-└─────── fonts
-    ├─── images
-    ├─── sass
-    └─── js
+└── public
+    └── public
+        ├── css
+        │   └── [affiliateCode]
+        │      └── *.min.css
+        ├───fonts
+        │    └── [affiliateCode]
+        │        └── *.*
+        ├── imges
+        │   └── [affiliateCode]
+        │        └── *.*
+        └── js
+            └── [affiliateCode]
+                └── *.min.js                        
+
 
 ```
 
