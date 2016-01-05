@@ -35,7 +35,7 @@ module.exports = function(grunt) {
 		    defaultAssets: ['<%= project.assets %>/htx'], // Default project for cloning
 		    css: ['<%= project.assets %>/css'],
 		    jsSrc: ['<%= project.assets %>/javascripts'],
-		    images: ['<%= project.assets %>/images'],
+		    // images: ['<%= project.assetsCloned %>/images'],
 		},
 
 		// Replace sass paths for compiling/@import
@@ -211,7 +211,15 @@ module.exports = function(grunt) {
 		],
 		//	Delete css files ready for new compiled versions
 		//	.__ files are derived from Macintosh file systems
-		css: ['<%= project.assets %>/css/*.css', '<%= project.assets %>/css/*.map']
+		css: ['<%= project.assets %>/css/*.css', '<%= project.assets %>/css/*.map'],
+		// Remove larger files in favour of minified versions for production
+		prod: [
+			'!<%= project.assetsPublic %>/js/<%= grunt.option(\"target\") %>/*.min.js',
+			'<%= project.assetsPublic %>/js/<%= grunt.option(\"target\") %>/*.js',
+			'!<%= project.assetsPublic %>/css/<%= grunt.option(\"target\") %>/*.min.css'
+			'<%= project.assetsPublic %>/css/<%= grunt.option(\"target\") %>/*.css'
+		]
+		
 	},
 
 	copy: {
@@ -243,6 +251,34 @@ module.exports = function(grunt) {
 
   			]
   		},
+  		images: {
+			files: [
+				// 1. Copy all images
+	  			{ 
+	  				expand: true, 
+	  				cwd: '<%= project.defaultAssets %>/images/',
+	  				flatten: false,
+	  				src: ['**'], 
+	  				dest: '<%= project.assets %>/<%= grunt.task.current.args[0] %>/images'
+	  				
+	  			} // Images
+
+  			]
+  		},
+  		fonts: {
+			files: [
+				// 1. Copy fonts
+	  			{ 
+	  				expand: true, 
+	  				cwd: '<%= project.defaultAssets %>/fonts/',
+	  				flatten: false,
+	  				src: ['**'], 
+	  				dest: '<%= project.assets %>/<%= grunt.task.current.args[0] %>/fonts'
+	  				
+	  			} // Fonts
+
+  			]
+  		},
   		js: {
 			files: [
 				// 1. Copy javascript files
@@ -259,12 +295,14 @@ module.exports = function(grunt) {
   		},
   		// Newbuild:End
 
-  		// Used when watching for changes
+  		// Tasks used in conjucntion with 'watch'
 		jsSrc: {
 			files: [
 			// includes files within path 
-  			{ src: '<%= project.assets %>/javascripts/combined.js', dest: '<%= project.assetsPublic %>/js/htx.js' } // JS
-  			// { src: '<%= project.assets %>/javascripts/combined.js', dest: '<%= project.assetsPublic %>/' + affCode + '/js/htx.js' } // JS
+			{ 
+				src: '<%= project.assets %>/javascripts/combined.js', 
+				dest: '<%= project.assetsPublic %>/js/<%= grunt.option(\"target\") %>/combined.js' 
+				} // JS
   			]
   		},
 
@@ -273,7 +311,10 @@ module.exports = function(grunt) {
 			// Copy to public folder location
 			// This includes affiliates, defined in affCode global at runtime e.g. --target=htx
 			// { src: '<%= project.css %>/styles.css', dest: '<%= project.assetsPublic %>/css/styles.css' } // CSS
-			{ src: '<%= project.css %>/styles.css', dest: '<%= project.assetsPublic %>/css/<%= grunt.option(\"target\") %>/styles.css' } // CSS
+			{ 
+				src: '<%= project.css %>/styles.css', 
+				dest: '<%= project.assetsPublic %>/css/<%= grunt.option(\"target\") %>/styles.css' 
+				} // CSS
   			]
   		},
 
@@ -388,7 +429,8 @@ module.exports = function(grunt) {
 	});
 	
 	// Production tasks
-	// cssmin: (minify css ready for prouction) e.g. grunt production --target=htx
-	grunt.registerTask('production', ['cssmin:prod']);
+	// Minify css and js files.
+	// Ensure --target is set for affiliate
+	grunt.registerTask('production', ['cssmin:prod', 'uglify:js', 'clean:prod']);
 
 };
