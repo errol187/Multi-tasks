@@ -8,13 +8,17 @@
 Workflow summary:
 
 
-## Basic cloning of default assets to copy all files by running task 1. Once files are copied you can watch the affiliates folder for changes by running task 2.
-1. _Run this task with the `grunt copy:all` command._
-2. _Run this task with the `grunt watch --target=[affiliateCode]` command._
+## Basic cloning of default assets 
+To copy all files by running task 1.  
+Once files are copied you can watch the affiliates folder for changes by running task 2.  
 
-Grunt 'watch' will run:
-Css tasks - `clean:css` `sass:dev` `copy:css` 
-Js tasks - `clean:js` `concat` `copy:jsSrc`
+1. _Run this task with the `grunt copy:all` command._   
+2. _Run this task with the `grunt watch --target=[affiliateCode]` command._   
+
+Grunt 'watch' will run:   
+
+Css tasks - `clean:css` `sass:dev` `copy:css`  
+Js tasks - `clean:js` `concat` `copy:jsSrc`  
 
 
 ## Production
@@ -27,7 +31,7 @@ Tasks run `cssmin:prod` `uglify:js` `clean:prod`
 
 Minify 
 Note:   
-*** Below is incomplete summary
+*** Below is incomplete summary   
 All css files are generated from sass files. For each project a folder is created under the assets directory.
 e.g. sass-{affiliate-append} Where affiliate-prefix is relative to the white label company 
 e.g. sass-htx
@@ -48,7 +52,6 @@ TODO:
 3. Update information in regards to command line variables
 4. Combine tasks for a single command line workflow process e.g grunt build:new:affiliate
 5. Development to apply brand colors by replacment inside 'variables.scss' file specific to the affiliate project
-6. 
 
 
 ## Getting Started
@@ -95,10 +98,10 @@ _Run this task with `grunt uglify:js --target=[affiliateCode]` command_
 
 
 #### --target
-Type: `[list affilates, 1, 2, 3, 4]`  
+Type: `string`  
 Default: `htx`
 
-Note: If command line global is not set the default folder will be set to 'htx'
+Note: If command line global is not set the default folder will be set to 'htx'. For a list of possible targets plese refer to htx affiliates code until a list is present.
 
 ### Usage Examples
 
