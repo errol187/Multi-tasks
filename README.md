@@ -54,6 +54,10 @@ _Run this task with `grunt copy:sass:[affiliateCode]` command_
 ## Copy Javascript
 _Run this task with `grunt copy:js:[affiliateCode]` command_
 
+## Update sass file paths
+ _Run this task with `grunt replace:dist --target=htx` command_
+ - ' currently only the sass files though I am looking into updating the branding color references'
+
 ## Minify Css
 _Run this task with `grunt cssmin --target=[affiliateCode]` command_
 
