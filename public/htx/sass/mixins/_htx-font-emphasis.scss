@@ -1,7 +1,0 @@
-// General usage applied to bold headings not headers.
-// Add size
-
-@mixin emphasiseFont($font-size) {
-  font-weight: 800;
-  font-size: $font-size;
-}

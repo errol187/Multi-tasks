@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 	if ( grunt.option('target') !== undefined) {
 		// var affCode = grunt.option('target');
 		// var affCode = grunt.option('target'); 
-		var affCode = 'sass-' + grunt.option('target');	
+		var affCode = grunt.option('target');	
 	} else {
 		var affCode = 'sass';	
 	}
@@ -29,9 +29,10 @@ module.exports = function(grunt) {
 		project: {
 		    app: ['public'], // Default is Conxxe
 		    // assets: ['<%= project.app %>/' + affCode],
-		    assets: ['<%= project.app %>/assets'],
+		    assets: ['<%= project.app %>/assets'], 
 		    assetsPublic: ['<%= project.app %>/public'],
-		    sass: ['<%= project.assets %>/' + affCode], // Assests folder holds all affiliate sub-directories
+		    assetsCloned: ['<%= project.assets %>/'+affCode],
+		    defaultAssets: ['<%= project.assets %>/htx'], // Default project for cloning
 		    css: ['<%= project.assets %>/css'],
 		    jsSrc: ['<%= project.assets %>/javascripts'],
 		    images: ['<%= project.assets %>/images'],
@@ -47,15 +48,17 @@ module.exports = function(grunt) {
 		  //         '<%= project.assets %>/<%= grunt.option(\"target\") %>/styles.scss'
 		  //       },
 				src: [
-				'<%= project.assets %>/' + affCode + '/styles.scss',
-				'<%= project.assets %>/' + affCode + '/mixins.scss'
+				'<%= project.assets %>/'+affCode+'/sass/styles.scss',
+				'<%= project.assets %>/'+affCode+'/sass/_mixins.scss'
 				// 'public/assets/sass-htx/styles.scss',
 				// 'public/assets/sass-htx/mixins.scss'
 				],
         		overwrite: true,
         		replacements: [{
-		            from: /(assets\/sass)/g,
-		            to: 'assets/'+ affCode
+		            // from: /(assets\/sass)/g,
+		            // from: /[\/]\w.*[a-zA-Z0-9]+[\/]/g, // format: public/assets/sass/_forms
+		            from: /([\/][^\s]+)(sass)/g,
+		            to: '/assets/'+affCode+'/sass'
 		        }]
 			}
 		},
@@ -63,8 +66,8 @@ module.exports = function(grunt) {
 		sass: {
 		    dev: {
 		        options: {
-		            style: 'compressed',
-		            compass: false,
+		            style: 'expanded',
+		           	compass: false,
 		            loadPath: '.', // root
 		            sourcemap: 'none',
 		            noCache: true
@@ -73,7 +76,8 @@ module.exports = function(grunt) {
 
 		        	// Compile sass files to css folder e.g css/styles.css
 		        	// Affiliates folder is set at runtime e.g. --target=htx
-		            '<%= project.assets %>/css/styles.css' : '<%= project.sass %>/styles.scss'
+		            // '<%= project.assets %>/css/styles.css' : '<%= project.assetsCloned %>/sass/styles.scss'
+		            '<%= project.assets %>/css/styles.css' : '<%= project.assetsCloned %>/sass/styles.scss'
 		        }
 		    }
 		},
@@ -119,7 +123,9 @@ module.exports = function(grunt) {
 		
 		watch: {
     		sass: {
-		        files: '<%= project.sass %>/**/*.scss',
+    			// Require --target=[affiliate] to be set on command line 
+    			// for default and cloned folders to be watched
+		        files: '<%= project.assetsCloned %>/**/*.scss',
 		        // Clean: clear css files
 		        // Sass: 
 		        tasks: ['clean:css', 'sass:dev', 'copy:css'],
@@ -133,7 +139,7 @@ module.exports = function(grunt) {
 		    },
 
 		     jsSrc: {
-		     	files: [ '<%= project.jsSrc %>/**/*.js' ],
+		     	files: [ '<%= project.assetsCloned %>/**/*.js' ],
 		     	tasks: ['clean:js', 'concat', 'copy:jsSrc']
 		     },
 
@@ -152,7 +158,7 @@ module.exports = function(grunt) {
 		uglify: {
 			js: {
 				files: { '<%= project.assetsPublic %>/js/combined.min.js': [
-		      		'<%= project.assets %>/javascripts/combined.js',
+		      		'<%= project.assetsCloned %>/javascripts/combined.js',
 		      		'!<%= project.assets %>/javascripts/*.js.map',
 		      		'!<%= project.assets %>/javascripts/*.min.js'
 		    	]
@@ -205,71 +211,55 @@ module.exports = function(grunt) {
 		],
 		//	Delete css files ready for new compiled versions
 		//	.__ files are derived from Macintosh file systems
-		css: ['<%= project.assets %>/css/*.css', '<%= project.assets %>/css/*.map', '<%= project.sass %>/**/.__*.*']
+		css: ['<%= project.assets %>/css/*.css', '<%= project.assets %>/css/*.map']
 	},
 
 	copy: {
-
 		all: {
-
 			files: [
-			// This is a new build for affiliates - copy all/required files
-			// Copy Bootstrap and sass files
-  			{ 
-  				expand: true, 
-  				cwd: '<%= project.sass %>/',
-  				flatten: false,
-  				src: ['**'], 
-  				dest: '<%= project.app %>/<%= grunt.option(\"target\") %>/sass/'
-  				// Sass
-  			},
-  			{ 
-  				expand: true, 
-  				cwd: '<%= project.assets %>/images/',
-  				flatten: false,
-  				src: ['**/*'], 
-  				dest: '<%= project.app %>/<%= grunt.option(\"target\") %>/images/'
-  				// Images
-  			},
-  			{ 
-  				expand: true, 
-  				cwd: '<%= project.jsSrc %>/',
-  				flatten: true,
-  				src: ['**/*'], 
-  				dest: '<%= project.app %>/<%= grunt.option(\"target\") %>/javascripts/'
-  			}, // Javascript
-  			{ 
-  				expand: true, 
-  				cwd: '<%= project.assets %>/fonts/',
-  				flatten: true,
-  				src: ['**'], 
-  				dest: '<%= project.app %>/<%= grunt.option(\"target\") %>/fonts/'
-  			} // Fonts
-
-  			]
-
+			// Newbuild - copy all files
+				{
+					expand: true, 
+					cwd: '<%= project.defaultAssets %>/', 
+					flatten: false,
+					src: ['*'], 
+					dest: '<%= project.assetsCloned %>/'
+				} // 
+			]
 		},
 
+		// Newbuild: Used in conjunction with new builds
 		sass: {
-
 			files: [
-				// New build for affiliates - copy required files
-				// called with grunt newBuild:sass:(string).
-				// string = affiliate argument at index args[1]
 				// 1. Copy Bootstrap and sass files
 	  			{ 
 	  				expand: true, 
-	  				cwd: '<%= project.sass %>/',
+	  				cwd: '<%= project.defaultAssets %>/sass/',
 	  				flatten: false,
 	  				src: ['**'], 
-	  				// dest: '<%= project.app %>/<%= grunt.option(\"target\") %>/sass/'
-	  				dest: '<%= project.assets %>/sass-<%= grunt.task.current.args[0] %>/'
+	  				dest: '<%= project.assets %>/<%= grunt.task.current.args[0] %>/sass'
 	  				
 	  			} // Sass
 
   			]
   		},
+  		js: {
+			files: [
+				// 1. Copy javascript files
+	  			{ 
+	  				expand: true, 
+	  				//cwd: '<%= project.jsSrc %>/',
+	  				flatten: true,
+	  				src: ['<%= project.defaultAssets %>/javascripts/*', '!<%= project.defaultAssets %>/javascripts/combined.js'], 
+	  				dest: '<%= project.assets %>/<%= grunt.task.current.args[0] %>/javascripts'
+	  				
+	  			} // Js
 
+  			]
+  		},
+  		// Newbuild:End
+
+  		// Used when watching for changes
 		jsSrc: {
 			files: [
 			// includes files within path 
@@ -316,7 +306,7 @@ module.exports = function(grunt) {
       		files: [{
       			expand: true,
 		      	cwd: '<%= project.css %>/',
-		      	src: ['*.css', '!*.min.css'],
+		      	src: ['styles.css'],
 		      	// src: '<%= project.css %>/styles.css', 
 		      	dest: '<%= project.assetsPublic %>/css/<%= grunt.option(\"target\") %>/', // CSS
 		      	// dest: '<%= project.css %>/css/',
