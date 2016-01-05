@@ -8,7 +8,7 @@ module.exports = function(grunt) {
 		// var affCode = grunt.option('target'); 
 		var affCode = grunt.option('target');	
 	} else {
-		var affCode = 'sass';	
+		var affCode = 'htx';	
 	}
 	
 	console.log(affCode);

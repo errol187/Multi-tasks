@@ -93,7 +93,7 @@ Note: If command line global is not set the default folder will be set to 'htx'
 ```
 
 ```shell
-**Basic Structure with affiliate folder - cloned src files:**
+**Basic Structure with affiliate folder - public folder generated files:**
 .
 ├── public
 │   └── public
@@ -128,6 +128,10 @@ Note: If command line global is not set the default folder will be set to 'htx'
 
 ```
 NOTE: Blah! Blah! Blah! Blah! Blah! Blah! Blah! Blah!
+TODO:   
+1. Production tasks   
+2. Combine workflow tasks   
+3. Branding color command line variables to be set and update '_variables.scss'   
 
 
 ##### Troubleshooting
