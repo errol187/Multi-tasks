@@ -216,7 +216,7 @@ module.exports = function(grunt) {
 		prod: [
 			'!<%= project.assetsPublic %>/js/<%= grunt.option(\"target\") %>/*.min.js',
 			'<%= project.assetsPublic %>/js/<%= grunt.option(\"target\") %>/*.js',
-			'!<%= project.assetsPublic %>/css/<%= grunt.option(\"target\") %>/*.min.css'
+			'!<%= project.assetsPublic %>/css/<%= grunt.option(\"target\") %>/*.min.css',
 			'<%= project.assetsPublic %>/css/<%= grunt.option(\"target\") %>/*.css'
 		]
 		
@@ -230,7 +230,7 @@ module.exports = function(grunt) {
 					expand: true, 
 					cwd: '<%= project.defaultAssets %>/', 
 					flatten: false,
-					src: ['*'], 
+					src: ['**'], 
 					dest: '<%= project.assetsCloned %>/'
 				} // 
 			]
