@@ -4,6 +4,7 @@
 
 (Prior to creating a new affiliate make sure that the default files have been built and *.min files created)
 
+
 ******************************************************************************************
 Workflow summary:
 
@@ -13,8 +14,8 @@ To copy all files by running task 1.
 Paths need updating in src files running task 2. (Only for sass files)     
 Once files are copied you can watch the affiliates folder for changes by running task 3.  
 
-1. _Run this task with the `grunt copy:all --target=[affiliateCode]` command._   
-2. _Run this task with `grunt replace:dist --target=[affiliateCode]` command_
+1. _Run this task with the `grunt copy:all` command._   
+2. _Run this task with `grunt replace:dist --target=htx` command_
 2. _Run this task with the `grunt watch --target=[affiliateCode]` command._   
 
 Grunt 'watch' will run:   
@@ -117,10 +118,23 @@ Default: `htx`
 
 Note: If command line global is not set the default folder will be set to 'htx'. For a list of possible targets plese refer to htx affiliates code until a list is present.
 
-### Usage Examples
+### Usage Examples   
 
-```js
-
+```shell
+/public/assets/css
+Here you will find compiled sass file (compiled into *.css). Used for copying to `/public/public/*` folder generated files.
+```
+```shell
+/public/assets/javascript
+Here you will find default scripts. Used for all affiliates.
+```
+```shell
+/public/assets/images
+Here you will find default images. Used for all affiliates.
+```
+```shell
+/public/assets/fonts
+Here you will find default fonts. Used for all affiliates.
 ```
 
 ```shell
